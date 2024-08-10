@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import connectDB from "./config/dbConnection";
 // import cookieParser from "cookie-parser";
+import userRoutes from "./routes/users";
 
 connectDB();
 
@@ -11,9 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/api/test', async (req: Request, res: Response) => {
-    res.json({ message: "Hello from Express End Point"});
-})
+app.use("/api/users", userRoutes);
 
 app.listen(8000, () => {
     console.log("Backend Server running on localhost:8000");
